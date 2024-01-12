@@ -590,7 +590,25 @@ margin-left:30px;
 /* CONTENT */
 
 
+/* Style for the green button */
+.green-button {
+	background-color: #185d1a; /* Green */
+	border-radius: 10px;
+	border: none;
+	color: white;
+	padding: 10px 20px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	cursor: pointer;
+}
 
+/* Style for the green button when mouse hovers over it */
+.green-button:hover {
+	background-color: #45a049;
+}
 
 
 
@@ -659,3 +677,4 @@ margin-left:30px;
 
 	
 }
+

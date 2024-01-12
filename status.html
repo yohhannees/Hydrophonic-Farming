@@ -158,7 +158,7 @@
             <h1>Status</h1>
             <ul class="breadcrumb">
               <li>
-                <a href="#">Dashboard</a>
+                <a href="/">Dashboard</a>
               </li>
               <li><i class="bx bx-chevron-right"></i></li>
               <li>
@@ -168,78 +168,57 @@
           </div>
         </div>
 
-        <h3 class="m-b-50 heading-line">
-          Machine Statistics <i class="fa fa-bell text-muted"></i>
-        </h3>
+    <h3 class="m-b-50 heading-line">
+      Machine Statistics <i class='bx bx-bar-chart-alt-2'></i>
+    </h3>
 
-        <ul class="box-info">
-          <li>
-            <i class="bx bi bi-thermometer-sun"></i>
-            <span class="text">
-              <h3>20&deg;C</h3>
-              <p>Temperature</p>
-            </span>
-          </li>
-          <li>
-            <i class="bx bi bi-cloud-drizzle-fill"></i>
-
-            <span class="text">
-              <h3>37%</h3>
-              <p>Humidity</p>
-            </span>
-          </li>
-          <li>
-            <i class="bx bi bi-droplet-fill"></i>
-
-            <span class="text">
-              <h3>2%</h3>
-              <p>Water level</p>
-            </span>
-          </li>
-        </ul>
-        <ul class="box-info">
-				<li>
-					<i class='bx bi bi-fan'></i>
-					<span class="text">
-						<h3>Fan</h3>
-						<p>on</p>
-					</span>
-				</li>
-				<li>
-				<i class='bx bi bi-gear-fill'></i>
-					
-					<span class="text">
-						<h3>Pump</h3>
-						<p>On</p>
-					</span>
-				</li>
-				<li>
-				<i class='bx bi bi-lightbulb-fill'></i>
-					
-					<span class="text">
-						<h3>Led</h3>
-						<p>on</p>
-					</span>
-				</li>
-			</ul>
+    <ul class="box-info">
+      <li>
+        <i class="bx bi bi-thermometer-sun"></i>
+        <span class="text temperature">
+          <h3>Temperature</h3>
+          <p>Not Measured</p>
+        </span>
+      </li>
+      <li>
+        <i class="bx bi bi-cloud-drizzle-fill"></i>
+        <span class="text humidity">
+          <h3>Humidity</h3>
+          <p>Not Measured</p>
+        </span>
+      </li>
+      <li>
+        <i class="bx bi bi-droplet-fill"></i>
+        <span class="text water-level">
+          <h3>Water level</h3>
+          <p>Not Measured</p>
+        </span>
+      </li>
+    </ul>
+    <ul class="box-info">
+      <li>
+        <i class='bx bi bi-fan'></i>
+        <span class="text fan-status">
+          <h3>Fan</h3>
+          <p></p>
+        </span>
+      </li>
+      <li>
+        <i class='bx bi bi-gear-fill'></i>
+        <span class="text pump-status">
+          <h3>Pump</h3>
+          <p></p>
+        </span>
+      </li>
+      <li>
+        <i class='bx bi bi-lightbulb-fill'></i>
+        <span class="text led-status">
+          <h3>Led</h3>
+          <p></p>
+        </span>
+      </li>
+    </ul>
               
-
-          <h3 class="m-b-50 heading-line">
-		  Weather Statistics <i class="fa fa-bell text-muted"></i>
-        </h3>
-        <div class="weather-container">
-        
-          <div class="grid-container">
-            <!-- Left Column -->
-            <div class="left-column" id="leftColumn">
-              <!-- Weather info will be populated here -->
-            </div>
-            <!-- Right Column -->
-            <div class="right-column" id="rightColumn">
-              <!-- Weather info will be populated here -->
-            </div>
-          </div>
-        </div>
       </main>
       <!-- MAIN -->
     </section>
@@ -247,7 +226,7 @@
 
     <script src="js/script.js"></script>
     <script src="app.js"></script>
-    <script src="status.js"></script>
+    <script src="configuration.js"></script>
     <script>
       function hideNotfication() {
         const notification = document.querySelector("#notify");

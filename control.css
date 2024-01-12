@@ -46,21 +46,27 @@
   border-radius: 50%;
 }
 
-input:checked + .slider {
-  background-color: #4CAF50; /* Green color when ON */
-}
 
 input:checked + .slider:before {
   transform: translateX(26px);
-}
-
-/* Red color when OFF */
-input[type="checkbox"] + .slider:not(:checked) {
-  background-color: #ccc;
 }
 
 .icon {
   font-size: 50px; /* Adjust the size of the icons */
   vertical-align: middle;
   margin-right: 10px;
+}
+/* When the checkbox is checked, add a blue background */
+.switch input:checked + .slider {
+  background-color: #0e7807;
+}
+
+/* Background color for slider */
+.slider {
+  background-color: #ccc;
+}
+
+/* Background color for slider when mouse hovers over it*/
+.slider:hover {
+  background-color: #aaa;
 }
