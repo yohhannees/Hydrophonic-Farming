@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,6 +12,7 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 	<!-- My CSS -->
 	<link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="config.css">
 	<link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
 
 
@@ -141,94 +144,39 @@
 		<!-- MAIN -->
 		<main>
 		<img src="img/hero.jpg" class="img-fluid img-thumbnail" alt="Responsive image">
-			<div class="head-title">
-				<div class="left">
-					<h1>Dashboard</h1>
-					<ul class="breadcrumb">
-						<li>
-							<a href="#">Dashboard</a>
-						</li>
-						<li><i class='bx bx-chevron-right' ></i></li>
-						<li>
-							<a class="active" href="#">Home</a>
-						</li>
-					</ul>
-				</div>
-			
-			</div>
-
-			<ul class="box-info">
-				<li>
-					<i class='bx bi bi-thermometer-sun' ></i>
-					<span class="text">
-						<h3>20&deg;C</h3>
-						<p>Temperature</p>
-					</span>
-				</li>
-				<li>
-					<i class='bx bi bi-cloud-drizzle-fill' ></i>
-					
-					<span class="text">
-						<h3>37%</h3>
-						<p>Humidity</p>
-					</span>
-				</li>
-				<li>
-					<i class='bx bi bi-droplet-fill' ></i>
-					
-					<span class="text">
-						<h3>2%</h3>
-						<p>Water level</p>
-					</span>
-				</li>
-			</ul>
-
-
-			<div class="table-data">
-				
-				<div class="todo">
-					<div class="head">
-						<h3>Scadule</h3>
-						<i class='bx bi bi-plus-circle-dotted' ></i>
-						
-						<i class='bx bx-filter' ></i>
-					</div>
-					<ul class="todo-list">
-						<li class="completed">
-							<p>Inspect Crop Pests and Diseases</p>
-							
-							<i class='bx bi bi-x-circle-fill' ></i>
-						</li>
-						<li class="completed">
-							<p>Check Nutrient Levels</p>
-							<i class='bx bi bi-x-circle-fill' ></i>
-						</li>
-						<li class="not-completed">
-							<p>Adjust Lighting Schedule</p>
-							<i class='bx bi bi-x-circle-fill' ></i>
-						</li>
-						
-					</ul>
-				</div>
-			</div>
-			<div class="Suggestion">
-			<img  src="img/banner3.jpg" class="img-fluid img-thumbnail" alt="ai image">
-			<div class="head-title">
-				<div class="left">
-					<h1>AI Suggestion</h1>
-					<ul class="breadcrumb">
-						<li>
-							<a href="#">See AI Suggestions for Your Farming</a>
-						</li>
-	
-					</ul>
-				</div>
-			
-			</div>
-			
-		</div>
+		
 		
 
+    
+    <div class="content-container  grid">
+      <div class="main-content">
+        <div class="card">
+          <h3>Crop Type</h3>
+          <form>
+            <input type="text" placeholder="Crop Type" class="input-field">
+          </form>
+        </div>
+        <div class="card">
+          <h3>Location</h3>
+          <form>
+            <select class="select-field">
+              <option value="">Select a location</option>
+              <option value="Addis Ababa">Addis Ababa</option>
+              <option value="Dire Dawa">Dire Dawa</option>
+              <option value="Mekelle">Mekelle</option>
+              <option value="Gondar">Gondar</option>
+              <option value="Bahir Dar">Bahir Dar</option>
+              <option value="Awasa">Awasa</option>
+              <option value="Jimma">Jimma</option>
+              <option value="Jijiga">Jijiga</option>
+              <option value="Shashamane">Shashamane</option>
+              <option value="Adama">Adama</option>
+            </select>
+          </form>
+        </div>
+        <button class="save-button">Save</button>
+      </div>
+    </div>
 		
 		</main>
 		<!-- MAIN -->

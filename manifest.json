@@ -1,6 +1,6 @@
 {
     "name": "Smart Hydrophonic Farming",
-    "short_name": "SHFApp",
+    "short_name": "SHF",
     "description": "Smart Hydrophonic Farming App",
     "start_url": "/",
     "display": "standalone",
