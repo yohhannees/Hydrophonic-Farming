@@ -11,7 +11,8 @@
 	<!-- My CSS -->
 	<link rel="stylesheet" href="style.css">
 	<link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
-<link rel="stylesheet" href="status.css">
+<!-- <link rel="stylesheet" href="status.css"> -->
+<link rel="stylesheet" href="control.css">
 	
 	<title>SIHF</title>
 </head>
@@ -69,7 +70,7 @@
 				</a>
 			</li>
 			<li  class="active">
-				<a href="#">
+				<a href="./control.html">
 				
 					<i class='bx bi bi-sliders' ></i>
 					<span class="text">Control</span>
@@ -78,14 +79,14 @@
 		
 		
 			<li>
-				<a href="#">
+				<a href="./status.html">
 				
 					<i class='bx bi bi-card-checklist' ></i>
 					<span class="text">Status</span>
 				</a>
 			</li>
 			<li>
-				<a href="#">
+				<a href="./notify.html">
 					
 					<i class='bx bi bi-bell' ></i>
 					<span class="text">Notification</span>
@@ -94,7 +95,7 @@
 		</ul>
 		<ul class="side-menu">
 			<li>
-				<a href="#">
+				<a href="./config.html">
 					<i class='bx bi bi-gear' ></i>
 					
 					<span class="text">Config</span>
@@ -156,92 +157,61 @@
 				</div>
 			
 			</div>
-			<section class="section-50">
-				
-			<h3 class="m-b-50 heading-line">Actuators <i class="fa fa-bell text-muted"></i></h3>
-			 <!-- Appliances -->
-			 <div class="appliances">
-      
-				<div class="appliance">
-				  <input type="checkbox" name="a" id="a">
-				  <label for="a">
-					<i class="bi bi-lightbulb-fill"></i>
-					<strong>LED</strong>
-					<span data-o="ON" data-c="OFF"></span>
-					<small></small>
-				  </label>
-				</div>
-				
-				<div class="appliance">
-				  <input type="checkbox" name="a" id="b">
-				  <label for="b">
-					<i class="bi bi-circle-square"></i>
-					<strong>Pump</strong>
-					<span data-o="ON" data-c="OFF"></span>
-					<small></small>
-				  </label>
-				</div>
-				
-				<div class="appliance">
-				  <input type="checkbox" name="a" id="c">
-				  <label for="c">
-					<i class="bi bi-fan"></i>
-					<strong>Fan</strong>
-					<span data-o="ON" data-c="OFF"></span>
-					<small></small>
-				  </label>
-				</div>
-				
-				<div class="appliance">
-				  <input type="checkbox" name="a" id="d">
-				  <label for="d">
-					<i class=" bi bi-lightbulb"></i> <i class=""></i>
-					<strong>System</strong>
-					<span data-o="ON" data-c="OFF"></span>
-					<small></small>
-				  </label>
-				</div>
-				
 			
-				
-			  </div>
+
+ <section class="section-50">
+    <h3 class="m-b-50 heading-line">Actuators <i class="bi bi-bell text-muted"></i></h3>
+    <div class="appliances">
+      <!-- LED Toggle -->
+      <div class="appliance">
+        <label class="switch">
+          <input type="checkbox" id="ledToggle">
+          <span class="slider"></span>
+        </label>
+        <label for="ledToggle">
+          <i class="bi bi-lightbulb-fill icon"></i>
+          <strong>LED</strong>
+        </label>
+      </div>
+      <!-- Pump Toggle -->
+      <div class="appliance">
+        <label class="switch">
+          <input type="checkbox" id="pumpToggle">
+          <span class="slider"></span>
+        </label>
+        <label for="pumpToggle">
+          <i class="bi bi-circle-square icon"></i>
+          <strong>Pump</strong>
+        </label>
+      </div>
+	  
+      <!-- Fan Toggle -->
+      <div class="appliance">
+        <label class="switch">
+          <input type="checkbox" id="fanToggle">
+          <span class="slider"></span>
+        </label>
+        <label for="fanToggle">
+          <i class="bi bi-fan icon"></i>
+          <strong>Fan</strong>
+        </label>
+      </div>
+      <!-- System Toggle -->
+      <div class="appliance">
+        <label class="switch">
+          <input type="checkbox" id="systemToggle">
+          <span class="slider"></span>
+        </label>
+        <label for="systemToggle">
+          <i class="bi bi-lightbulb icon"></i>
+          <strong>System</strong>
+        </label>
+      </div>
+    </div>
+  </section>
+ 
+
 			
-			
-			</section>
-			
-			<h3 class="m-b-50 heading-line">Statistics <i class="fa fa-bell text-muted"></i></h3>
-			
-		
-			<ul class="box-info">
-				<li>
-					<i class='bx bi bi-thermometer-sun' ></i>
-					<span class="text">
-						<h3>20&deg;C</h3>
-						<p>Temperature</p>
-					</span>
-				</li>
-				<li>
-					<i class='bx bi bi-cloud-drizzle-fill' ></i>
-					
-					<span class="text">
-						<h3>37%</h3>
-						<p>Humidity</p>
-					</span>
-				</li>
-				<li>
-					<i class='bx bi bi-droplet-fill' ></i>
-					
-					<span class="text">
-						<h3>2%</h3>
-						<p>Water level</p>
-					</span>
-				</li>
-			</ul>
-			<h3 class="m-b-50 heading-line">Crop Status <i class="fa fa-bell text-muted"></i></h3>
-			
-		
-		
-		
 		</main>
 		<!-- MAIN -->
 	</section>
@@ -250,6 +220,7 @@
 
 	<script src="js/script.js"></script>
 	<script src="app.js"></script>
+	<script src="control.js"></script>
 	<script>
 		function hideNotfication(){
 			
