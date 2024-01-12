@@ -6,7 +6,7 @@
     <link rel="manifest" href="/manifest.json" />
     <meta
       name="description"
-      content="L smart indoor hydrophobic farming and  innovative approach to sustainable crop production."
+      content="Learn about smart indoor hydrophobic farming and its innovative approach to sustainable crop production."
     />
     <!-- Boxicons -->
     <link
@@ -20,7 +20,6 @@
     <!-- My CSS -->
     <link rel="stylesheet" href="style.css" />
     <link rel="shortcut icon" href="img/logo.png" type="image/x-icon" />
-    <link rel="stylesheet" href="status.css" />
 
     <title>SIHF</title>
   </head>
@@ -67,8 +66,8 @@
       </a>
       <span class="brand-text">Smart Hydroponic Farming</span>
       <ul class="side-menu top">
-        <li>
-          <a href="/">
+        <li class="active">
+          <a href="./index.html">
             <i class="bx bxs-dashboard"></i>
             <span class="text">Dashboard</span>
           </a>
@@ -80,7 +79,7 @@
           </a>
         </li>
 
-        <li class="active">
+        <li>
           <a href="./status.html">
             <i class="bx bi bi-card-checklist"></i>
             <span class="text">Status</span>
@@ -92,13 +91,12 @@
             <span class="text">Notification</span>
           </a>
         </li>
-		  <li>
-				<a href="./ai.html">
-					
-					<i class='bx bi bi-lightbulb' ></i>
-					<span class="text">Ai Feed</span>
-				</a>
-			</li>
+        <li>
+          <a href="./ai.html">
+            <i class="bx bi bi-lightbulb"></i>
+            <span class="text">Ai Feed</span>
+          </a>
+        </li>
       </ul>
       <ul class="side-menu">
         <li>
@@ -148,97 +146,19 @@
 
       <!-- MAIN -->
       <main>
-        <img
-          src="img/banner3.jpg"
-          class="img-fluid img-thumbnail"
-          alt="Responsive image"
-        />
-        <div class="head-title">
-          <div class="left">
-            <h1>Status</h1>
-            <ul class="breadcrumb">
-              <li>
-                <a href="#">Dashboard</a>
-              </li>
-              <li><i class="bx bx-chevron-right"></i></li>
-              <li>
-                <a class="active" href="#">Home</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <h3 class="m-b-50 heading-line">
-          Machine Statistics <i class="fa fa-bell text-muted"></i>
-        </h3>
-
-        <ul class="box-info">
-          <li>
-            <i class="bx bi bi-thermometer-sun"></i>
-            <span class="text">
-              <h3>20&deg;C</h3>
-              <p>Temperature</p>
-            </span>
-          </li>
-          <li>
-            <i class="bx bi bi-cloud-drizzle-fill"></i>
-
-            <span class="text">
-              <h3>37%</h3>
-              <p>Humidity</p>
-            </span>
-          </li>
-          <li>
-            <i class="bx bi bi-droplet-fill"></i>
-
-            <span class="text">
-              <h3>2%</h3>
-              <p>Water level</p>
-            </span>
-          </li>
-        </ul>
-        <ul class="box-info">
-				<li>
-					<i class='bx bi bi-fan'></i>
-					<span class="text">
-						<h3>Fan</h3>
-						<p>on</p>
-					</span>
-				</li>
-				<li>
-				<i class='bx bi bi-gear-fill'></i>
-					
-					<span class="text">
-						<h3>Pump</h3>
-						<p>On</p>
-					</span>
-				</li>
-				<li>
-				<i class='bx bi bi-lightbulb-fill'></i>
-					
-					<span class="text">
-						<h3>Led</h3>
-						<p>on</p>
-					</span>
-				</li>
-			</ul>
-              
-
-          <h3 class="m-b-50 heading-line">
-		  Weather Statistics <i class="fa fa-bell text-muted"></i>
-        </h3>
-        <div class="weather-container">
-        
-          <div class="grid-container">
-            <!-- Left Column -->
-            <div class="left-column" id="leftColumn">
-              <!-- Weather info will be populated here -->
-            </div>
-            <!-- Right Column -->
-            <div class="right-column" id="rightColumn">
-              <!-- Weather info will be populated here -->
-            </div>
-          </div>
+        <div class="container">
+          <h1>Generative AI Information</h1>
+          <form id="cropForm">
+            <label for="cropInput">Enter Crop Name:</label>
+            <input
+              type="text"
+              id="cropInput"
+              name="crop"
+              placeholder="Enter crop name"
+            />
+            <button type="submit">Get Information</button>
+          </form>
+          <div id="resultContainer"></div>
         </div>
       </main>
       <!-- MAIN -->
@@ -247,7 +167,7 @@
 
     <script src="js/script.js"></script>
     <script src="app.js"></script>
-    <script src="status.js"></script>
+     <script src="ai.js"></script>
     <script>
       function hideNotfication() {
         const notification = document.querySelector("#notify");
