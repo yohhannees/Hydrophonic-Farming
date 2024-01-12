@@ -276,3 +276,39 @@ document.getElementById('buzzerToggle').addEventListener('change', function() {
 
 
 /////////////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////configuration for AI////////////////////////////////////////
+
+// Import GoogleGenerativeAI from the provided package
+import { GoogleGenerativeAI } from "@google/generative-ai";
+
+// Replace 'YOUR_API_KEY' with your actual API key
+const API_KEY = "AIzaSyBirEfJhisakatvUv3SqWNG8Q3o6E-S2iI";
+const genAI = new GoogleGenerativeAI(API_KEY);
+const plantName = "cabbage";
+
+// Function to generate a story and display it
+async function generateStory() {
+    const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+    // Construct the prompt string using template literals
+    const prompt = `Write the best conditions on how to grow a ${plantName}, including the best humidity, soil condition, temperature, light conditions, air pressure, best practices, cultivation techniques, nutrients found, preferable soil type, soil pH, soil texture, water level, and more, and provide a well-structured paragraph. Use bullet points for the best practices and cultivation techniques detailed explanation.`;
+
+    try {
+        const result = await model.generateContent(prompt);
+        const response = await result.response;
+        const text = response.text();
+
+        // Display the generated story in the div with id "storyOutput"
+        document.getElementById('storyOutput').innerText = text;
+    } catch (error) {
+        console.error("Error generating story:", error);
+        document.getElementById('storyOutput').innerText = "An error occurred while generating the story.";
+    }
+}
+
+// Immediately call the generateStory function when the script loads
+generateStory();
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
