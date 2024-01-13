@@ -1,51 +1,49 @@
 /////////////////////////configuration for  changing variables ////////////////////////////////////////
 
-
-
 /////////////////////////////////////////////////////////////////////////////////////////
-
 
 /////////////////////////configuration for the config variable /////////////////////////////////
 
-document.getElementById('settingsForm').addEventListener('submit', function(event) {
-  // Prevent the form from being submitted normally
-  event.preventDefault();
+document
+  .getElementById("settingsForm")
+  .addEventListener("submit", function (event) {
+    // Prevent the form from being submitted normally
+    event.preventDefault();
 
-  // Get the input values
-  var port = document.getElementById('port').value;
-  var plant = document.getElementById('plant').value;
-  var location = document.getElementById('location').value;
+    // Get the input values
+    var port = document.getElementById("port").value;
+    var plant = document.getElementById("plant").value;
+    var location = document.getElementById("location").value;
 
     console.log("Port:", port);
     console.log("Plant :", plant);
     console.log("Location:", location);
 
-  // Create an object with the data
-  var data = {
-    port: port,
-    plant: plant,
-    location: location
-  };
+    // Create an object with the data
+    var data = {
+      port: port,
+      plant: plant,
+      location: location,
+    };
 
-  console.log("data",data)
+    console.log("data", data);
 
-  // Save the data to local storage
-  localStorage.setItem('settings', JSON.stringify(data));
-});
+    // Save the data to local storage
+    localStorage.setItem("settings", JSON.stringify(data));
+  });
 /////////////////////////////////////////////////////////////////////////////////////
 
 /////////////////   weather api configuration  ////////////////////////
 
 document.addEventListener("DOMContentLoaded", () => {
   const apiKey = "a8d503e79f791912910dc535060e0137"; // Replace with your OpenWeatherMap API key
-  // var query = "Addis Ababa"; 
+  // var query = "Addis Ababa";
 
   // Retrieve the data from local storage
-var data = JSON.parse(localStorage.getItem('settings'));
+  var data = JSON.parse(localStorage.getItem("settings"));
 
-// Use the location as the query
-var query = data.location;
-
+  // Use the location as the query
+  var query = data.location;
 
   fetchWeatherData(apiKey, query);
 });
@@ -103,7 +101,7 @@ function displayWeatherInfo(weatherData) {
 const apiUrl = "http://your-api-url.com";
 
 // Retrieve the data from local storage
-var data = JSON.parse(localStorage.getItem('settings'));
+var data = JSON.parse(localStorage.getItem("settings"));
 
 // Use the location as the query
 var query = data.port;
@@ -292,18 +290,30 @@ document.getElementById("ledForm").addEventListener("submit", function (event) {
 // Function to make a POST request
 async function postData(endpoint, data = {}) {
   const response = await fetch(apiUrl + endpoint, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
+    method: "get",
+    // headers: {
+    //   "Content-Type": "application/json",
+    // },
+    body: data,
   });
   return response.json();
 }
 
 // Add event listener to fan toggle
-document.getElementById("fanToggle").addEventListener("change", function () {
-  postData("/fan/" + (this.checked ? "on" : "off"));
+// document.getElementById("fanToggle").addEventListener("change", function () {
+//   postData("/fan/" + (this.checked ? "on" : "off"));
+//     fetch('http:{apiUrl}/pump/on')
+
+// });
+document.getElementById("pumpToggle").addEventListener("change", function () {
+  var status = this.checked ? "on" : "off";
+  console.log("making request");
+  fetch(`http://${apiUrl}/pump/${status}`)
+    .then((response) => response.json())
+    .then((data) => console.log(data))
+    .catch((error) => {
+      console.error("Error:", error);
+    });
 });
 
 // Add event listener to pump toggle

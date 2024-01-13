@@ -1,13 +1,14 @@
-
 .section-50 {
   max-width: 800px;
   margin: 0 auto;
 }
+
 .appliances {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
 }
+
 .switch {
   display: inline-block;
   position: relative;
@@ -46,27 +47,24 @@
   border-radius: 50%;
 }
 
-
 input:checked + .slider:before {
   transform: translateX(26px);
 }
 
 .icon {
-  font-size: 50px; /* Adjust the size of the icons */
+  font-size: 50px;
   vertical-align: middle;
   margin-right: 10px;
 }
-/* When the checkbox is checked, add a blue background */
+
 .switch input:checked + .slider {
   background-color: #0e7807;
 }
 
-/* Background color for slider */
 .slider {
   background-color: #ccc;
 }
 
-/* Background color for slider when mouse hovers over it*/
 .slider:hover {
   background-color: #aaa;
 }

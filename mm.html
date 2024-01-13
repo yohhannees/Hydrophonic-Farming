@@ -1,34 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Unsplash Image Fetcher</title>
-    <style>
-        /* Add your CSS styles here */
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            background-size: cover;
-            background-position: center;
-        }
-
-        .image-container {
-            margin-top: 20px;
-        }
-    </style>
+    <title>Simple Page</title>
 </head>
-
 <body>
-    <div id="appContainer" class="container">
-        <h1>Weather Info</h1>
-        <div class="image-container" id="imageContainer"></div>
-    </div>
+    <label class="switch">
+        <input type="checkbox" id="myButton">
+        <span class="slider"></span>
+    </label>
 
-    <script src="mm.js"></script>
+    <script>
+        document.getElementById("myButton").addEventListener("change", function () {
+            var data = JSON.parse(localStorage.getItem('settings'));
+
+            // Use the location as the query
+            var api = data.port;
+            var status = this.checked ? 'on' : 'off';
+            var url = `http://${api}/pump/${status}`;
+            
+            console.log('Making GET request to:', url);
+            fetch(url)
+                .then(response => response.json())
+                .then(data => console.log(data))
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+        });
+    </script>
+    
 </body>
-
 </html>

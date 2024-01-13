@@ -172,75 +172,219 @@
 				</div>
 
 			</div>
-		<ul class="box-info">
-			<!-- Fan -->
-			<li>
-				<i class='bx bi bi-fan'></i>
-				<span class="text fan-status">
-					<h3>Fan</h3>
-					<p></p>
-					<label class="switch">
-						<input type="checkbox" id="fanToggle">
-						<span class="slider"></span>
-					</label>
-				</span>
-			</li>
-			<!-- Pump -->
-			<li>
-				<i class='bx bi bi-gear-fill'></i>
-				<span class="text pump-status">
-					<h3>Pump</h3>
-					<p></p>
-					<label class="switch">
-						<input type="checkbox" id="pumpToggle">
-						<span class="slider"></span>
-					</label>
-				</span>
-			</li>
-			<!-- Led -->
-			<li>
-				<i class='bx bi bi-lightbulb-fill'></i>
-				<span class="text led-status">
-					<h3>Led</h3>
-					<p></p>
-					<label class="switch">
-						<input type="checkbox" id="ledToggle">
-						<span class="slider"></span>
-					</label>
-				</span>
-			</li>
-		
-		
-		</ul>
-		<ul class="box-info">
-				<!-- System -->
-			<li>
-				<i class='bx bx-file'></i>
-				<span class="text system-status">
-					<h3>System</h3>
-					<p></p>
-					<label class="switch">
-						<input type="checkbox" id="systemToggle">
-						<span class="slider"></span>
-					</label>
-				</span>
-			</li>
-			<!-- Buzzer -->
-			<li>
-				<i class='bx bx-bell'></i>
-				<span class="text buzzer-status">
-					<h3>Buzzer</h3>
-					<p></p>
-					<label class="switch">
-						<input type="checkbox" id="buzzerToggle">
-						<span class="slider"></span>
-					</label>
-				</span>
-			</li>
-		</ul>
+			<ul class="box-info">
 
-		
 
+
+				<!DOCTYPE html>
+				<html lang="en">
+
+				<head>
+					<meta charset="UTF-8">
+					<title>Control Panel</title>
+					<style>
+						/* Styling from your provided CSS */
+						.section-50 {
+							max-width: 800px;
+							margin: 0 auto;
+						}
+
+						.appliances {
+							display: grid;
+							grid-template-columns: repeat(2, 1fr);
+							gap: 20px;
+						}
+
+						.switch {
+							display: inline-block;
+							position: relative;
+							width: 60px;
+							height: 34px;
+							margin-bottom: 15px;
+						}
+
+						.switch input {
+							opacity: 0;
+							width: 0;
+							height: 0;
+						}
+
+						.slider {
+							position: absolute;
+							cursor: pointer;
+							top: 0;
+							left: 0;
+							right: 0;
+							bottom: 0;
+							background-color: #ccc;
+							transition: 0.4s;
+							border-radius: 34px;
+						}
+
+						.slider:before {
+							position: absolute;
+							content: "";
+							height: 26px;
+							width: 26px;
+							left: 4px;
+							bottom: 4px;
+							background-color: white;
+							transition: 0.4s;
+							border-radius: 50%;
+						}
+
+						input:checked+.slider:before {
+							transform: translateX(26px);
+						}
+
+						.icon {
+							font-size: 50px;
+							vertical-align: middle;
+							margin-right: 10px;
+						}
+
+						.switch input:checked+.slider {
+							background-color: #0e7807;
+						}
+
+						.slider {
+							background-color: #ccc;
+						}
+
+						.slider:hover {
+							background-color: #aaa;
+						}
+
+						/* Additional styling for the new structure */
+						.box-info {
+							list-style-type: none;
+							padding: 0;
+						}
+
+						.box-info li {
+							display: flex;
+							align-items: center;
+							margin-bottom: 20px;
+						}
+
+						.box-info .text {
+							margin-left: 15px;
+						}
+
+						.box-info h3 {
+							margin: 0;
+						}
+
+						.box-info p {
+							margin: 5px 0 0;
+						}
+					</style>
+					<script>
+						// JavaScript function remains unchanged
+						function toggleComponent(component) {
+							var data = JSON.parse(localStorage.getItem('settings'));
+							var api = data.port;
+							var status = component.checked ? 'on' : 'off';
+							var url = `http://${api}/${component.id}/${status}`;
+
+							console.log(`Making GET request to: ${url}`);
+							fetch(url)
+								.then(response => response.json())
+								.then(data => console.log(data))
+								.catch(error => {
+									console.error('Error:', error);
+								});
+						}
+					</script>
+				</head>
+
+				<body>
+
+
+					<!-- New Structure -->
+					<ul class="box-info">
+						<li>
+							<i class='bx bi bi-fan'></i>
+							<span class="text fan-status">
+								<h3>Fan</h3>
+								<p></p>
+								<label class="switch">
+									<input type="checkbox" id="fan" onchange="toggleComponent(this)">
+									<span class="slider"></span>
+								</label>
+							</span>
+						</li>
+						<li>
+							<i class='bx bi bi-gear-fill'></i>
+							<span class="text pump-status">
+								<h3>Pump</h3>
+								<p></p>
+								<label class="switch">
+									<input type="checkbox" id="pump" onchange="toggleComponent(this)">
+									<span class="slider"></span>
+								</label>
+							</span>
+						</li>
+						<li>
+							<i class='bx bi bi-lightbulb-fill'></i>
+							<span class="text led">
+								<h3>Led</h3>
+								<p></p>
+								<label class="switch">
+									<input type="checkbox" id="led" onchange="toggleComponent(this)">
+									<span class="slider"></span>
+								</label>
+							</span>
+						</li>
+					</ul>
+					<ul class="box-info">
+
+
+						<li>
+							<i class='bx bx-file'></i>
+							<span class="text system-status">
+								<h3>System</h3>
+								<p></p>
+								<label class="switch">
+									<input type="checkbox" id="turnAll" onchange="toggleComponent(this)">
+									<span class="slider"></span>
+								</label>
+							</span>
+						</li>
+						<li>
+							<i class='bx bx-bell'></i>
+							<span class="text buzzer-status">
+								<h3>Buzzer</h3>
+								<p></p>
+								<label class="switch">
+									<input type="checkbox" id="buzzer" onchange="toggleComponent(this)">
+									<span class="slider"></span>
+								</label>
+							</span>
+						</li>
+						<li>
+							<i class='bx bx-bell'></i>
+							<span class="text buzzer-status">
+								<h3>Initiate Buzzer</h3>
+								<p></p>
+								<label class="switch">
+									<input type="checkbox" id="Handleisbuzzer" onchange="toggleComponent(this)">
+									<span class="slider"></span>
+								</label>
+							</span>
+						</li>
+					</ul>
+					</div>
+					</div>
+
+
+
+				</body>
+
+				</html>
+
+
+			</ul>
 
 
 		</main>
