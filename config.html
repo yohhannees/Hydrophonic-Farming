@@ -206,6 +206,81 @@
 					</span>
 				</li>
 			</ul>
+			<!-- Your HTML structure remains the same -->
+			
+			<script>
+				// Mocking the API endpoint
+				  // Retrieve the data from local storage
+					var data = JSON.parse(localStorage.getItem("settings"));
+
+					// Use the location as the query
+					var api = data.port;
+		
+
+				// Function to handle form submissions
+				// Fan Form Handling and Request
+					document.getElementById("fanForm").addEventListener('submit', function (event) {
+						event.preventDefault();
+
+						var startDelay = document.getElementById("fanStartDelay").value;
+						var duration = document.getElementById("fanDuration").value;
+
+						var url = `http://${api}/fan/setSchedule?startDelay=${startDelay}&duration=${duration}`;
+
+						fetch(url)
+							.then(response => response.text())
+							.then(data => {
+								document.querySelector(".fan-status p").innerText = data;
+								console.log(`Response for Fan: ${data}`);
+							})
+							.catch(error => {
+								console.error(`Error for Fan: ${error}`);
+							});
+					});
+
+
+					// Pump Form Handling and Request
+						document.getElementById("pumpForm").addEventListener('submit', function (event) {
+							event.preventDefault();
+
+							var startDelay = document.getElementById("pumpStartDelay").value;
+							var duration = document.getElementById("pumpDuration").value;
+
+							var url = `http://${api}/pump/setSchedule?startDelay=${startDelay}&duration=${duration}`;
+
+							fetch(url)
+								.then(response => response.text())
+								.then(data => {
+									document.querySelector(".pump-status p").innerText = data;
+									console.log(`Response for Pump: ${data}`);
+								})
+								.catch(error => {
+									console.error(`Error for Pump: ${error}`);
+								});
+						});
+
+          // LED Form Handling and Request
+			document.getElementById("ledForm").addEventListener('submit', function (event) {
+				event.preventDefault();
+
+				var startDelay = document.getElementById("ledStartDelay").value;
+				var duration = document.getElementById("ledDuration").value;
+
+				var url = `http://${api}/led/setSchedule?startDelay=${startDelay}&duration=${duration}`;
+
+				fetch(url)
+					.then(response => response.text())
+					.then(data => {
+						document.querySelector(".led-status p").innerText = data;
+						console.log(`Response for LED: ${data}`);
+					})
+					.catch(error => {
+						console.error(`Error for LED: ${error}`);
+					});
+			});
+
+			</script>
+
 		<ul class="box-info">
 			<!-- Existing list items... -->
 
