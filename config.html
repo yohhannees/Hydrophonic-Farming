@@ -173,8 +173,9 @@
 						<p></p>
 						<form id="fanForm">
 							<h3>Start delay</h3> <input type="number" id="fanStartDelay" min="1" value="30"><br>
-							<h3>Duration</h3> </h3><input type="number" id="fanDuration" min="1" value="2"><br>
-								<input type="submit" value="Set Schedule " class="green-button">
+							<h3>Duration</h3>
+							</h3><input type="number" id="fanDuration" min="1" value="2"><br>
+							<input type="submit" value="Set Schedule " class="green-button">
 						</form>
 					</span>
 				</li>
@@ -186,7 +187,7 @@
 						<form id="pumpForm">
 							<h3>Start delay </h3> <input type="number" id="pumpStartDelay" min="1" value="30"><br>
 							<h3>Duration </h3> <input type="number" id="pumpDuration" min="1" value="2"><br>
-								<input type="submit" value="Set Schedule " class="green-button">
+							<input type="submit" value="Set Schedule " class="green-button">
 						</form>
 					</span>
 
@@ -200,106 +201,106 @@
 						<form id="ledForm">
 							<h3>Start delay</h3><input type="number" id="ledStartDelay" min="1" value="30"><br>
 							<h3>Duration </h3><input type="number" id="ledDuration" min="1" value="2"><br>
-							<input type="submit" value="Set Schedule "  class="green-button">
+							<input type="submit" value="Set Schedule " class="green-button">
 						</form>
 
 					</span>
 				</li>
 			</ul>
 			<!-- Your HTML structure remains the same -->
-			
+
 			<script>
 				// Mocking the API endpoint
-				  // Retrieve the data from local storage
-					var data = JSON.parse(localStorage.getItem("settings"));
+				// Retrieve the data from local storage
+				var data = JSON.parse(localStorage.getItem("settings"));
 
-					// Use the location as the query
-					var api = data.port;
-		
+				// Use the location as the query
+				var api = data.port;
+
 
 				// Function to handle form submissions
 				// Fan Form Handling and Request
-					document.getElementById("fanForm").addEventListener('submit', function (event) {
-						event.preventDefault();
+				document.getElementById("fanForm").addEventListener('submit', function (event) {
+					event.preventDefault();
 
-						var startDelay = document.getElementById("fanStartDelay").value;
-						var duration = document.getElementById("fanDuration").value;
+					var startDelay = document.getElementById("fanStartDelay").value;
+					var duration = document.getElementById("fanDuration").value;
 
-						var url = `http://${api}/fan/setSchedule?startDelay=${startDelay}&duration=${duration}`;
+					var url = `http://${api}/fan/setSchedule?startDelay=${startDelay}&duration=${duration}`;
 
-						fetch(url)
-							.then(response => response.text())
-							.then(data => {
-								document.querySelector(".fan-status p").innerText = data;
-								console.log(`Response for Fan: ${data}`);
-							})
-							.catch(error => {
-								console.error(`Error for Fan: ${error}`);
-							});
-					});
-
-
-					// Pump Form Handling and Request
-						document.getElementById("pumpForm").addEventListener('submit', function (event) {
-							event.preventDefault();
-
-							var startDelay = document.getElementById("pumpStartDelay").value;
-							var duration = document.getElementById("pumpDuration").value;
-
-							var url = `http://${api}/pump/setSchedule?startDelay=${startDelay}&duration=${duration}`;
-
-							fetch(url)
-								.then(response => response.text())
-								.then(data => {
-									document.querySelector(".pump-status p").innerText = data;
-									console.log(`Response for Pump: ${data}`);
-								})
-								.catch(error => {
-									console.error(`Error for Pump: ${error}`);
-								});
+					fetch(url)
+						.then(response => response.text())
+						.then(data => {
+							document.querySelector(".fan-status p").innerText = data;
+							console.log(`Response for Fan: ${data}`);
+						})
+						.catch(error => {
+							console.error(`Error for Fan: ${error}`);
 						});
+				});
 
-          // LED Form Handling and Request
-			document.getElementById("ledForm").addEventListener('submit', function (event) {
-				event.preventDefault();
 
-				var startDelay = document.getElementById("ledStartDelay").value;
-				var duration = document.getElementById("ledDuration").value;
+				// Pump Form Handling and Request
+				document.getElementById("pumpForm").addEventListener('submit', function (event) {
+					event.preventDefault();
 
-				var url = `http://${api}/led/setSchedule?startDelay=${startDelay}&duration=${duration}`;
+					var startDelay = document.getElementById("pumpStartDelay").value;
+					var duration = document.getElementById("pumpDuration").value;
 
-				fetch(url)
-					.then(response => response.text())
-					.then(data => {
-						document.querySelector(".led-status p").innerText = data;
-						console.log(`Response for LED: ${data}`);
-					})
-					.catch(error => {
-						console.error(`Error for LED: ${error}`);
-					});
-			});
+					var url = `http://${api}/pump/setSchedule?startDelay=${startDelay}&duration=${duration}`;
+
+					fetch(url)
+						.then(response => response.text())
+						.then(data => {
+							document.querySelector(".pump-status p").innerText = data;
+							console.log(`Response for Pump: ${data}`);
+						})
+						.catch(error => {
+							console.error(`Error for Pump: ${error}`);
+						});
+				});
+
+				// LED Form Handling and Request
+				document.getElementById("ledForm").addEventListener('submit', function (event) {
+					event.preventDefault();
+
+					var startDelay = document.getElementById("ledStartDelay").value;
+					var duration = document.getElementById("ledDuration").value;
+
+					var url = `http://${api}/led/setSchedule?startDelay=${startDelay}&duration=${duration}`;
+
+					fetch(url)
+						.then(response => response.text())
+						.then(data => {
+							document.querySelector(".led-status p").innerText = data;
+							console.log(`Response for LED: ${data}`);
+						})
+						.catch(error => {
+							console.error(`Error for LED: ${error}`);
+						});
+				});
 
 			</script>
 
-		<ul class="box-info">
-			<!-- Existing list items... -->
+			<ul class="box-info">
+				<!-- Existing list items... -->
 
-			<!-- New list item -->
-			<li>
-				<i class='bx bxs-cog'></i>
-				<span class="text settings">
-					<form id="settingsForm">
-						<h3>Port Number</h3>
-						<input type="text" id="port" required><br>
-						<h3>Plant Name</h3>
-						<input type="text" id="plant" required><br>
-						<h3>Location</h3>
-						<input type="text" id="location" required><br>
-						<input type="submit" value="Set Settings" class="green-button">
-					</form>
-				</span>
-			</li>
-		</ul>
+				<!-- New list item -->
+				<li>
+					<i class='bx bxs-cog'></i>
+					<span class="text settings">
+						<form id="settingsForm">
+							<h3>Port Number</h3>
+							<input type="text" id="port" required><br>
+							<h3>Plant Name</h3>
+							<input type="text" id="plant" required><br>
+							<h3>Location</h3>
+							<input type="text" id="location" required><br>
+							<input type="submit" value="Set Settings" class="green-button">
+						</form>
+					</span>
+				</li>
+			</ul>
 			<div class="Suggestion">
 				<img src="img/banner3.jpg" class="img-fluid img-thumbnail" alt="ai image" />
 				<div class="head-title">
