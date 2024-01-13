@@ -13,6 +13,11 @@
 	<!-- My CSS -->
 	<link rel="stylesheet" href="style.css" />
 	<link rel="shortcut icon" href="img/logo.png" type="image/x-icon" />
+	<!-- Firebase App (the core Firebase SDK) -->
+	<script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-app.js"></script>
+	<!-- Firebase Firestore (if you want to use Firestore) -->
+	<script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-firestore.js"></script>
+
 
 	<title>SIHF</title>
 </head>
@@ -201,7 +206,25 @@
 					</span>
 				</li>
 			</ul>
-		
+		<ul class="box-info">
+			<!-- Existing list items... -->
+
+			<!-- New list item -->
+			<li>
+				<i class='bx bxs-cog'></i>
+				<span class="text settings">
+					<form id="settingsForm">
+						<h3>Port Number</h3>
+						<input type="text" id="port" required><br>
+						<h3>Plant Name</h3>
+						<input type="text" id="plant" required><br>
+						<h3>Location</h3>
+						<input type="text" id="location" required><br>
+						<input type="submit" value="Set Settings" class="green-button">
+					</form>
+				</span>
+			</li>
+		</ul>
 			<div class="Suggestion">
 				<img src="img/banner3.jpg" class="img-fluid img-thumbnail" alt="ai image" />
 				<div class="head-title">

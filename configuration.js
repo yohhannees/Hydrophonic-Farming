@@ -1,8 +1,51 @@
+/////////////////////////configuration for  changing variables ////////////////////////////////////////
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////configuration for the config variable /////////////////////////////////
+
+document.getElementById('settingsForm').addEventListener('submit', function(event) {
+  // Prevent the form from being submitted normally
+  event.preventDefault();
+
+  // Get the input values
+  var port = document.getElementById('port').value;
+  var plant = document.getElementById('plant').value;
+  var location = document.getElementById('location').value;
+
+    console.log("Port:", port);
+    console.log("Plant :", plant);
+    console.log("Location:", location);
+
+  // Create an object with the data
+  var data = {
+    port: port,
+    plant: plant,
+    location: location
+  };
+
+  console.log("data",data)
+
+  // Save the data to local storage
+  localStorage.setItem('settings', JSON.stringify(data));
+});
+/////////////////////////////////////////////////////////////////////////////////////
+
 /////////////////   weather api configuration  ////////////////////////
 
 document.addEventListener("DOMContentLoaded", () => {
   const apiKey = "a8d503e79f791912910dc535060e0137"; // Replace with your OpenWeatherMap API key
-  const query = "Addis Ababa"; // Replace with the city name or query
+  // var query = "Addis Ababa"; 
+
+  // Retrieve the data from local storage
+var data = JSON.parse(localStorage.getItem('settings'));
+
+// Use the location as the query
+var query = data.location;
+
 
   fetchWeatherData(apiKey, query);
 });
@@ -54,18 +97,16 @@ function displayWeatherInfo(weatherData) {
 
 //////////////////////////////////////////////////////////////////////////////////
 
-
-
-
-
-
-
 ////////////////////////////////configuration for control //////////////////////////
 
-
-
 // Declare the API URL
-const apiUrl = 'http://your-api-url.com';
+const apiUrl = "http://your-api-url.com";
+
+// Retrieve the data from local storage
+var data = JSON.parse(localStorage.getItem('settings'));
+
+// Use the location as the query
+var query = data.port;
 
 // Function to fetch data
 async function fetchData(endpoint) {
@@ -75,9 +116,9 @@ async function fetchData(endpoint) {
 }
 
 // Set initial values to "Off"
-document.querySelector('.fan-status p').textContent = 'Off';
-document.querySelector('.pump-status p').textContent = 'Off';
-document.querySelector('.led-status p').textContent = 'Off';
+document.querySelector(".fan-status p").textContent = "Off";
+document.querySelector(".pump-status p").textContent = "Off";
+document.querySelector(".led-status p").textContent = "Off";
 document.querySelector(".system-status p").textContent = "Off";
 document.querySelector(".buzzer-status p").textContent = "Off";
 // set initial values to "Not Measured"
@@ -85,50 +126,60 @@ document.querySelector(".buzzer-status p").textContent = "Off";
 // document.querySelector(".humidity p").textContent = "Not Measured";
 // document.querySelector(".temperature p").textContent = "Not Measured";
 // Fetch temperature
-fetchData('/temperature').then(data => {
-  document.querySelector('.temperature h').textContent = `${data.temperature}°C`;
+fetchData("/temperature").then((data) => {
+  document.querySelector(
+    ".temperature h"
+  ).textContent = `${data.temperature}°C`;
 });
 
 // Fetch humidity
-fetchData('/humidity').then(data => {
-  document.querySelector('.humidity h3').textContent = `${data.humidity}%`;
+fetchData("/humidity").then((data) => {
+  document.querySelector(".humidity h3").textContent = `${data.humidity}%`;
 });
 
 // Fetch water level
-fetchData('/water-level').then(data => {
-  document.querySelector('.water-level h3').textContent = `${data.waterLevel}%`;
+fetchData("/water-level").then((data) => {
+  document.querySelector(".water-level h3").textContent = `${data.waterLevel}%`;
 });
 
 // Fetch fan status
-fetchData('/fan-status').then(data => {
-  document.querySelector('.fan-status p').textContent = data.fanStatus ? 'On' : 'Off';
+fetchData("/fan-status").then((data) => {
+  document.querySelector(".fan-status p").textContent = data.fanStatus
+    ? "On"
+    : "Off";
 });
 
 // Fetch pump status
-fetchData('/pump-status').then(data => {
-  document.querySelector('.pump-status p').textContent = data.pumpStatus ? 'On' : 'Off';
+fetchData("/pump-status").then((data) => {
+  document.querySelector(".pump-status p").textContent = data.pumpStatus
+    ? "On"
+    : "Off";
 });
 
 // Fetch LED status
-fetchData('/led-status').then(data => {
-  document.querySelector('.led-status p').textContent = data.ledStatus ? 'On' : 'Off';
+fetchData("/led-status").then((data) => {
+  document.querySelector(".led-status p").textContent = data.ledStatus
+    ? "On"
+    : "Off";
 });
 // Fetch Buzzer Status
-fetchData('/buzzer-status').then(data => {
-    document.querySelector('.buzzer-status p').textContent = data.buzzerStatus ? 'On' : 'Off';
+fetchData("/buzzer-status").then((data) => {
+  document.querySelector(".buzzer-status p").textContent = data.buzzerStatus
+    ? "On"
+    : "Off";
 });
-   
+
 // Fetch system Status
 
-fetchData('/system-status').then(data => {
-  document.querySelector('.system-status p').textContent = data.systemStatus ? 'On' : 'Off';
+fetchData("/system-status").then((data) => {
+  document.querySelector(".system-status p").textContent = data.systemStatus
+    ? "On"
+    : "Off";
 });
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////configuration for config //////////////////////////
-
 
 // Handle form submission
 // document.getElementById('pumpForm').addEventListener('submit', function(event) {
@@ -172,115 +223,107 @@ fetchData('/system-status').then(data => {
 
 //    this displays delay data on the forms
 // Handle form submission
-document.getElementById('pumpForm').addEventListener('submit', function(event) {
+document
+  .getElementById("pumpForm")
+  .addEventListener("submit", function (event) {
+    event.preventDefault();
+    const startDelayInput = document.getElementById("pumpStartDelay");
+    const durationInput = document.getElementById("pumpDuration");
+    const startDelay = startDelayInput.value;
+    const duration = durationInput.value;
+    fetch(apiUrl + "/pump/setSchedule", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ startDelay, duration }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        startDelayInput.value = data.startDelay;
+        durationInput.value = data.duration;
+      });
+  });
+
+document.getElementById("fanForm").addEventListener("submit", function (event) {
   event.preventDefault();
-  const startDelayInput = document.getElementById('pumpStartDelay');
-  const durationInput = document.getElementById('pumpDuration');
+  const startDelayInput = document.getElementById("fanStartDelay");
+  const durationInput = document.getElementById("fanDuration");
   const startDelay = startDelayInput.value;
   const duration = durationInput.value;
-  fetch(apiUrl + '/pump/setSchedule', {
-    method: 'POST',
+  fetch(apiUrl + "/fan/setSchedule", {
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     body: JSON.stringify({ startDelay, duration }),
   })
-  .then(response => response.json())
-  .then(data => {
-    startDelayInput.value = data.startDelay;
-    durationInput.value = data.duration;
-  });
+    .then((response) => response.json())
+    .then((data) => {
+      startDelayInput.value = data.startDelay;
+      durationInput.value = data.duration;
+    });
 });
 
-document.getElementById('fanForm').addEventListener('submit', function(event) {
+document.getElementById("ledForm").addEventListener("submit", function (event) {
   event.preventDefault();
-  const startDelayInput = document.getElementById('fanStartDelay');
-  const durationInput = document.getElementById('fanDuration');
+  const startDelayInput = document.getElementById("ledStartDelay");
+  const durationInput = document.getElementById("ledDuration");
   const startDelay = startDelayInput.value;
   const duration = durationInput.value;
-  fetch(apiUrl + '/fan/setSchedule', {
-    method: 'POST',
+  fetch(apiUrl + "/led/setSchedule", {
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     body: JSON.stringify({ startDelay, duration }),
   })
-  .then(response => response.json())
-  .then(data => {
-    startDelayInput.value = data.startDelay;
-    durationInput.value = data.duration;
-  });
-});
-
-document.getElementById('ledForm').addEventListener('submit', function(event) {
-  event.preventDefault();
-  const startDelayInput = document.getElementById('ledStartDelay');
-  const durationInput = document.getElementById('ledDuration');
-  const startDelay = startDelayInput.value;
-  const duration = durationInput.value;
-  fetch(apiUrl + '/led/setSchedule', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ startDelay, duration }),
-  })
-  .then(response => response.json())
-  .then(data => {
-    startDelayInput.value = data.startDelay;
-    durationInput.value = data.duration;
-  });
+    .then((response) => response.json())
+    .then((data) => {
+      startDelayInput.value = data.startDelay;
+      durationInput.value = data.duration;
+    });
 });
 
 //////////////////////////////////////////////////////////////////////////////
 
 //////////////////////////configuration for controller////////////////////////////////
 
-
 // Function to make a POST request
 async function postData(endpoint, data = {}) {
   const response = await fetch(apiUrl + endpoint, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json'
+      "Content-Type": "application/json",
     },
-    body: JSON.stringify(data)
+    body: JSON.stringify(data),
   });
   return response.json();
 }
 
 // Add event listener to fan toggle
-document.getElementById('fanToggle').addEventListener('change', function() {
-  postData('/fan/' + (this.checked ? 'on' : 'off'));
+document.getElementById("fanToggle").addEventListener("change", function () {
+  postData("/fan/" + (this.checked ? "on" : "off"));
 });
 
 // Add event listener to pump toggle
-document.getElementById('pumpToggle').addEventListener('change', function() {
-  postData('/pump/' + (this.checked ? 'on' : 'off'));
+document.getElementById("pumpToggle").addEventListener("change", function () {
+  postData("/pump/" + (this.checked ? "on" : "off"));
 });
 
 // Add event listener to led toggle
-document.getElementById('ledToggle').addEventListener('change', function() {
-  postData('/led/' + (this.checked ? 'on' : 'off'));
+document.getElementById("ledToggle").addEventListener("change", function () {
+  postData("/led/" + (this.checked ? "on" : "off"));
 });
 
 // Add event listener to system toggle
-document.getElementById('systemToggle').addEventListener('change', function() {
-  postData('/system/' + (this.checked ? 'on' : 'off'));
+document.getElementById("systemToggle").addEventListener("change", function () {
+  postData("/system/" + (this.checked ? "on" : "off"));
 });
 
 // Add event listener to buzzer toggle
-document.getElementById('buzzerToggle').addEventListener('change', function() {
-  postData('/buzzer/' + (this.checked ? 'on' : 'off'));
+document.getElementById("buzzerToggle").addEventListener("change", function () {
+  postData("/buzzer/" + (this.checked ? "on" : "off"));
 });
 
-
 /////////////////////////////////////////////////////////////////////////////////////
-
-
-/////////////////////////configuration for AI////////////////////////////////////////
-
-
-
-
-/////////////////////////////////////////////////////////////////////////////////////////

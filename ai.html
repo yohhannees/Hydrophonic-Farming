@@ -186,7 +186,13 @@
     // Replace 'YOUR_API_KEY' with your actual API key
     const API_KEY = "AIzaSyBirEfJhisakatvUv3SqWNG8Q3o6E-S2iI";
     const genAI = new GoogleGenerativeAI(API_KEY);
-    const plantName = "cabagge";
+    // const plantName = "cabagge";
+    // Retrieve the data from local storage
+    var data = JSON.parse(localStorage.getItem('settings'));
+
+    // Use the location as the query
+    var plantName = data.plant;
+ 
   
       document.getElementById('storyOutput').innerText = 'loading.....';
     // Function to generate a story and display it
