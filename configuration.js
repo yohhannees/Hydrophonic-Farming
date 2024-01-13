@@ -1,6 +1,4 @@
-/////////////////////////configuration for  changing variables ////////////////////////////////////////
 
-/////////////////////////////////////////////////////////////////////////////////////////
 
 /////////////////////////configuration for the config variable /////////////////////////////////
 
@@ -97,83 +95,7 @@ function displayWeatherInfo(weatherData) {
 
 ////////////////////////////////configuration for control //////////////////////////
 
-// Declare the API URL
-const apiUrl = "http://your-api-url.com";
 
-// Retrieve the data from local storage
-var data = JSON.parse(localStorage.getItem("settings"));
-
-// Use the location as the query
-var query = data.port;
-
-// Function to fetch data
-async function fetchData(endpoint) {
-  const response = await fetch(apiUrl + endpoint);
-  const data = await response.json();
-  return data;
-}
-
-// Set initial values to "Off"
-document.querySelector(".fan-status p").textContent = "Off";
-document.querySelector(".pump-status p").textContent = "Off";
-document.querySelector(".led-status p").textContent = "Off";
-document.querySelector(".system-status p").textContent = "Off";
-document.querySelector(".buzzer-status p").textContent = "Off";
-// set initial values to "Not Measured"
-// document.querySelector(".water-level p").textContent = "Not Measured";
-// document.querySelector(".humidity p").textContent = "Not Measured";
-// document.querySelector(".temperature p").textContent = "Not Measured";
-// Fetch temperature
-fetchData("/temperature").then((data) => {
-  document.querySelector(
-    ".temperature h"
-  ).textContent = `${data.temperature}°C`;
-});
-
-// Fetch humidity
-fetchData("/humidity").then((data) => {
-  document.querySelector(".humidity h3").textContent = `${data.humidity}%`;
-});
-
-// Fetch water level
-fetchData("/water-level").then((data) => {
-  document.querySelector(".water-level h3").textContent = `${data.waterLevel}%`;
-});
-
-// Fetch fan status
-fetchData("/fan-status").then((data) => {
-  document.querySelector(".fan-status p").textContent = data.fanStatus
-    ? "On"
-    : "Off";
-});
-
-// Fetch pump status
-fetchData("/pump-status").then((data) => {
-  document.querySelector(".pump-status p").textContent = data.pumpStatus
-    ? "On"
-    : "Off";
-});
-
-// Fetch LED status
-fetchData("/led-status").then((data) => {
-  document.querySelector(".led-status p").textContent = data.ledStatus
-    ? "On"
-    : "Off";
-});
-// Fetch Buzzer Status
-fetchData("/buzzer-status").then((data) => {
-  document.querySelector(".buzzer-status p").textContent = data.buzzerStatus
-    ? "On"
-    : "Off";
-});
-
-// Fetch system Status
-
-fetchData("/system-status").then((data) => {
-  document.querySelector(".system-status p").textContent = data.systemStatus
-    ? "On"
-    : "Off";
-});
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -285,55 +207,3 @@ document.getElementById("ledForm").addEventListener("submit", function (event) {
 
 //////////////////////////////////////////////////////////////////////////////
 
-//////////////////////////configuration for controller////////////////////////////////
-
-// Function to make a POST request
-async function postData(endpoint, data = {}) {
-  const response = await fetch(apiUrl + endpoint, {
-    method: "get",
-    // headers: {
-    //   "Content-Type": "application/json",
-    // },
-    body: data,
-  });
-  return response.json();
-}
-
-// Add event listener to fan toggle
-// document.getElementById("fanToggle").addEventListener("change", function () {
-//   postData("/fan/" + (this.checked ? "on" : "off"));
-//     fetch('http:{apiUrl}/pump/on')
-
-// });
-document.getElementById("pumpToggle").addEventListener("change", function () {
-  var status = this.checked ? "on" : "off";
-  console.log("making request");
-  fetch(`http://${apiUrl}/pump/${status}`)
-    .then((response) => response.json())
-    .then((data) => console.log(data))
-    .catch((error) => {
-      console.error("Error:", error);
-    });
-});
-
-// Add event listener to pump toggle
-document.getElementById("pumpToggle").addEventListener("change", function () {
-  postData("/pump/" + (this.checked ? "on" : "off"));
-});
-
-// Add event listener to led toggle
-document.getElementById("ledToggle").addEventListener("change", function () {
-  postData("/led/" + (this.checked ? "on" : "off"));
-});
-
-// Add event listener to system toggle
-document.getElementById("systemToggle").addEventListener("change", function () {
-  postData("/system/" + (this.checked ? "on" : "off"));
-});
-
-// Add event listener to buzzer toggle
-document.getElementById("buzzerToggle").addEventListener("change", function () {
-  postData("/buzzer/" + (this.checked ? "on" : "off"));
-});
-
-/////////////////////////////////////////////////////////////////////////////////////

@@ -6,7 +6,7 @@
     <link rel="manifest" href="/manifest.json" />
     <meta
       name="description"
-      content="L smart indoor hydrophobic farming and  innovative approach to sustainable crop production."
+      content=" smart indoor hydrophobic farming and  innovative approach to sustainable crop production."
     />
     <!-- Boxicons -->
     <link
@@ -172,52 +172,125 @@
       Machine Statistics <i class='bx bx-bar-chart-alt-2'></i>
     </h3>
 
-    <ul class="box-info">
-      <li>
-        <i class="bx bi bi-thermometer-sun"></i>
-        <span class="text temperature">
-          <h3>Temperature</h3>
-          <p>Not Measured</p>
-        </span>
-      </li>
-      <li>
-        <i class="bx bi bi-cloud-drizzle-fill"></i>
-        <span class="text humidity">
-          <h3>Humidity</h3>
-          <p>Not Measured</p>
-        </span>
-      </li>
-      <li>
-        <i class="bx bi bi-droplet-fill"></i>
-        <span class="text water-level">
-          <h3>Water level</h3>
-          <p>Not Measured</p>
-        </span>
-      </li>
-    </ul>
-    <ul class="box-info">
-      <li>
-        <i class='bx bi bi-fan'></i>
-        <span class="text fan-status">
-          <h3>Fan</h3>
-          <p></p>
-        </span>
-      </li>
-      <li>
-        <i class='bx bi bi-gear-fill'></i>
-        <span class="text pump-status">
-          <h3>Pump</h3>
-          <p></p>
-        </span>
-      </li>
-      <li>
-        <i class='bx bi bi-lightbulb-fill'></i>
-        <span class="text led-status">
-          <h3>Led</h3>
-          <p></p>
-        </span>
-      </li>
-    </ul>
+    <!DOCTYPE html>
+    <html lang="en">
+    
+    <head>
+      <meta charset="UTF-8">
+      <title>Data Display</title>
+      <style>
+        /* Add any necessary CSS styles here */
+        .box-info {
+          list-style-type: none;
+          padding: 0;
+        }
+      </style>
+    </head>
+    
+    <body>
+    
+      <ul class="box-info">
+        <!-- Temperature and Humidity -->
+        <li>
+          <i class="bx bi bi-thermometer-sun"></i>
+          <span class="text temperature">
+            <h3>Temperature</h3>
+            <p id="tempValue">Not Measured</p>
+          </span>
+        </li>
+        <li>
+          <i class="bx bi bi-cloud-drizzle-fill"></i>
+          <span class="text humidity">
+            <h3>Humidity</h3>
+            <p id="humidValue">Not Measured</p>
+          </span>
+        </li>
+        <li>
+          <i class="bx bi bi-droplet-fill"></i>
+          <span class="text water-level">
+            <h3>Water Level</h3>
+            <p id="waterLevel">Not Measured</p>
+          </span>
+        </li>
+      </ul>
+    
+      <ul class="box-info">
+        <!-- Fan, Pump, and LED -->
+        <li>
+          <i class='bx bi bi-fan'></i>
+          <span class="text fan-status">
+            <h3>Fan</h3>
+            <p id="fanStatus"></p>
+          </span>
+        </li>
+        <li>
+          <i class='bx bi bi-gear-fill'></i>
+          <span class="text pump-status">
+            <h3>Pump</h3>
+            <p id="pumpStatus"></p>
+          </span>
+        </li>
+        <li>
+          <i class='bx bi bi-lightbulb-fill'></i>
+          <span class="text led-status">
+            <h3>Led</h3>
+            <p id="ledStatus"></p>
+          </span>
+        </li>
+      </ul>
+    
+      <script>
+        // Mocking the API endpoint
+        var data = JSON.parse(localStorage.getItem('settings'));
+          var api = data.port;
+
+        // Function to fetch Temperature and Humidity
+        fetch(`http://${api}/tempHumid`)
+          .then(response => response.text())
+          .then(data => {
+            const [temp, humid] = data.split('/');
+            document.getElementById('tempValue').innerText = temp;
+            document.getElementById('humidValue').innerText = humid;
+            console.log(`Temperature: ${temp}, Humidity: ${humid}`);
+          });
+
+        // Function to fetch Water Level
+        fetch(`http://${api}/waterLevel`)
+          .then(response => response.text())
+          .then(data => {
+            document.getElementById('waterLevel').innerText = data;
+            console.log(`Water Level: ${data}`);
+          });
+
+        // Function to fetch LED Status
+        fetch(`http://${api}/led/getStatus`)
+          .then(response => response.text())
+          .then(data => {
+            document.getElementById('ledStatus').innerText = data;
+            console.log(`LED Status: ${data}`);
+          });
+
+        // Function to fetch Fan Status
+        fetch(`http://${api}/fan/getStatus`)
+          .then(response => response.text())
+          .then(data => {
+            document.getElementById('fanStatus').innerText = data;
+            console.log(`Fan Status: ${data}`);
+          });
+
+        // Function to fetch Pump Status
+        fetch(`http://${api}/pump/getStatus`)
+          .then(response => response.text())
+          .then(data => {
+            document.getElementById('pumpStatus').innerText = data;
+            console.log(`Pump Status: ${data}`);
+          });
+      </script>
+    
+    </body>
+    
+    </html>
+
               
       </main>
       <!-- MAIN -->

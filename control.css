@@ -1,70 +1,98 @@
-.section-50 {
-  max-width: 800px;
-  margin: 0 auto;
-}
 
-.appliances {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-}
+					
+						/* Styling from your provided CSS */
+						.section-50 {
+							max-width: 800px;
+							margin: 0 auto;
+						}
 
-.switch {
-  display: inline-block;
-  position: relative;
-  width: 60px;
-  height: 34px;
-  margin-bottom: 15px;
-}
+						.appliances {
+							display: grid;
+							grid-template-columns: repeat(2, 1fr);
+							gap: 20px;
+						}
 
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
+						.switch {
+							display: inline-block;
+							position: relative;
+							width: 60px;
+							height: 34px;
+							margin-bottom: 15px;
+						}
 
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  transition: 0.4s;
-  border-radius: 34px;
-}
+						.switch input {
+							opacity: 0;
+							width: 0;
+							height: 0;
+						}
 
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  transition: 0.4s;
-  border-radius: 50%;
-}
+						.slider {
+							position: absolute;
+							cursor: pointer;
+							top: 0;
+							left: 0;
+							right: 0;
+							bottom: 0;
+							background-color: #ccc;
+							transition: 0.4s;
+							border-radius: 34px;
+						}
 
-input:checked + .slider:before {
-  transform: translateX(26px);
-}
+						.slider:before {
+							position: absolute;
+							content: "";
+							height: 26px;
+							width: 26px;
+							left: 4px;
+							bottom: 4px;
+							background-color: white;
+							transition: 0.4s;
+							border-radius: 50%;
+						}
 
-.icon {
-  font-size: 50px;
-  vertical-align: middle;
-  margin-right: 10px;
-}
+						input:checked+.slider:before {
+							transform: translateX(26px);
+						}
 
-.switch input:checked + .slider {
-  background-color: #0e7807;
-}
+						.icon {
+							font-size: 50px;
+							vertical-align: middle;
+							margin-right: 10px;
+						}
 
-.slider {
-  background-color: #ccc;
-}
+						.switch input:checked+.slider {
+							background-color: #0e7807;
+						}
 
-.slider:hover {
-  background-color: #aaa;
-}
+						.slider {
+							background-color: #ccc;
+						}
+
+						.slider:hover {
+							background-color: #aaa;
+						}
+
+						/* Additional styling for the new structure */
+						.box-info {
+							list-style-type: none;
+							padding: 0;
+						}
+
+						.box-info li {
+							display: flex;
+							align-items: center;
+							margin-bottom: 20px;
+						}
+
+						.box-info .text {
+							margin-left: 15px;
+						}
+
+						.box-info h3 {
+							margin: 0;
+						}
+
+						.box-info p {
+							margin: 5px 0 0;
+						}
+				
