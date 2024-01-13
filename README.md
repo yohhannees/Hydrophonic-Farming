@@ -1,4 +1,4 @@
-# Project Title
+# Hydrophonic Farming Dashboard For Ietp 4th Year Project
 
 This project is a web interface for controlling various devices. It includes a series of toggle switches for controlling a fan, pump, LED, system, and buzzer. The state of each device can be toggled on and off, and the current state is indicated by the color of the toggle switch.
 
