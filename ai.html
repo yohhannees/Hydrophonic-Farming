@@ -187,8 +187,8 @@
     const API_KEY = "AIzaSyBirEfJhisakatvUv3SqWNG8Q3o6E-S2iI";
     const genAI = new GoogleGenerativeAI(API_KEY);
     const plantName = "cabagge";
-
-
+  
+      document.getElementById('storyOutput').innerText = 'loading.....';
     // Function to generate a story and display it
     async function generateStory() {
       const model = genAI.getGenerativeModel({ model: "gemini-pro" });
@@ -199,6 +199,7 @@
         const result = await model.generateContent(prompt);
         const response = await result.response;
         const text = response.text();
+        
 
         // Display the generated story in the div with id "storyOutput"
         document.getElementById('storyOutput').innerText = text;
