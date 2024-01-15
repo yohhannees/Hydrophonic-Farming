@@ -2,9 +2,8 @@
 
 /////////////////////////configuration for the config variable /////////////////////////////////
 
-document
-  .getElementById("settingsForm")
-  .addEventListener("submit", function (event) {
+document.getElementById("settingsForm")
+  document.addEventListener("submit", function (event) {
     // Prevent the form from being submitted normally
     event.preventDefault();
 
