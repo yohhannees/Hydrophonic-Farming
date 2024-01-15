@@ -136,7 +136,7 @@
         <span class="num">8</span>
       </a>
 
-      <a href="#" class="profile">
+      <a href="./ai.html" class="profile">
         <i class="bx bxs-cog"></i>
       </a>
     </nav>
@@ -194,7 +194,9 @@
     var plantName = data.plant;
  
   
-      document.getElementById('storyOutput').innerText = 'loading.....';
+      document.getElementById('storyOutput').innerText = `Please wait patiently as I gather the necessary information about ${plantName} and formulate a thorough response that will assist you in your quest for optimal cultivation. of ${plantName}`
+
+
     // Function to generate a story and display it
     async function generateStory() {
       const model = genAI.getGenerativeModel({ model: "gemini-pro" });
@@ -209,6 +211,7 @@
 
         // Display the generated story in the div with id "storyOutput"
         document.getElementById('storyOutput').innerText = text;
+        
       } catch (error) {
         console.error("Error generating story:", error);
         document.getElementById('storyOutput').innerText = "An error occurred while generating the story.";
@@ -226,10 +229,10 @@
         <img src="img/banner3.jpg" class="img-fluid img-thumbnail" alt="ai image" />
         <div class="head-title">
           <div class="left">
-            <h1>AI Suggestion</h1>
+            <a href="./ai.html"><h1>AI Suggestion</h1></a>
             <ul class="breadcrumb">
               <li>
-                <a href="#">See AI Suggestions for Your Farming</a>
+                <a href="./ai.html">See AI Suggestions for Your Farming</a>
               </li>
             </ul>
           </div>
