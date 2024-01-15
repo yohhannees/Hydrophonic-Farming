@@ -223,8 +223,8 @@
 				document.getElementById("fanForm").addEventListener('submit', function (event) {
 					event.preventDefault();
 
-					var startDelay = document.getElementById("fanStartDelay").value/10;
-					var duration = document.getElementById("fanDuration").value/10;
+					var startDelay = document.getElementById("fanStartDelay").value;
+					var duration = document.getElementById("fanDuration").value;
 
 					var url = `http://${api}/fan/setSchedule?startDelay=${startDelay}&duration=${duration}`;
 
@@ -244,8 +244,8 @@
 				document.getElementById("pumpForm").addEventListener('submit', function (event) {
 					event.preventDefault();
 
-					var startDelay = document.getElementById("pumpStartDelay").value/10;
-					var duration = document.getElementById("pumpDuration").value/10;
+					var startDelay = document.getElementById("pumpStartDelay").value;
+					var duration = document.getElementById("pumpDuration").value;
 
 					var url = `http://${api}/pump/setSchedule?startDelay=${startDelay}&duration=${duration}`;
 
@@ -264,8 +264,8 @@
 				document.getElementById("ledForm").addEventListener('submit', function (event) {
 					event.preventDefault();
 
-					var startDelay = document.getElementById("ledStartDelay").value /10 ;
-					var duration = document.getElementById("ledDuration").value/10;
+					var startDelay = document.getElementById("ledStartDelay").value  ;
+					var duration = document.getElementById("ledDuration").value;
 
 					var url = `http://${api}/led/setSchedule?startDelay=${startDelay}&duration=${duration}`;
 
@@ -281,6 +281,38 @@
 				});
 
 			</script>
+			<script>
+				// Mocking the API endpoint
+				// Retrieve the data from local storage
+				var file = JSON.parse(localStorage.getItem("settings"));
+
+				var route = file.port;
+
+				var oldmsg = '';
+				var socekt = new WebSocket(`ws://${route}:81`);
+				socekt.onmessage = function (event) {
+					// var notification = document.getElementById('status');
+
+					if (oldmsg != event.data) {
+						// notification.innerHTML += "<p>" + event.data + "</p>";
+
+						var oldNotification = JSON.parse(localStorage.getItem("notification"));
+						var xold = oldNotification.oldmsg;
+						oldmsg = event.data;
+						var notification = {
+							oldmsg: event.data + "/" + xold,
+
+						};
+						console.log("notification", notification);
+						localStorage.setItem("notification", JSON.stringify(notification));
+					}
+
+				}
+
+
+
+			</script>
+
 
 			<ul class="box-info">
 				<!-- Existing list items... -->

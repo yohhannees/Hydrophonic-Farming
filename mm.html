@@ -1,32 +1,41 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Simple Page</title>
-</head>
-<body>
-    <label class="switch">
-        <input type="checkbox" id="myButton">
-        <span class="slider"></span>
-    </label>
 
-    <script>
-        document.getElementById("myButton").addEventListener("change", function () {
-            var data = JSON.parse(localStorage.getItem('settings'));
+<script>
+    // Mocking the API endpoint
+    // Retrieve the data from local storage
+    var file = JSON.parse(localStorage.getItem("settings"));
 
-            // Use the location as the query
-            var api = data.port;
-            var status = this.checked ? 'on' : 'off';
-            var url = `http://${api}/pump/${status}`;
-            
-            console.log('Making GET request to:', url);
-            fetch(url)
-                .then(response => response.json())
-                .then(data => console.log(data))
-                .catch((error) => {
-                    console.error('Error:', error);
-                });
-        });
-    </script>
-    
-</body>
-</html>
+    var route = file.port;
+
+    var oldmsg = '';
+    var socekt = new WebSocket(`ws://${route}:81`);
+    socekt.onmessage = function (event) {
+        // var notification = document.getElementById('status');
+
+        if (oldmsg != event.data) {
+            // notification.innerHTML += "<p>" + event.data + "</p>";
+
+            var oldNotification = JSON.parse(localStorage.getItem("notification"));
+            var xold= oldNotification.oldmsg;
+            oldmsg = event.data;
+            var notification = {
+                oldmsg: event.data +"/"+xold,
+
+            };
+            console.log("notification", notification);
+            localStorage.setItem("notification", JSON.stringify(notification));
+        }
+
+    }
+
+
+
+</script>
+
+
+
+   
+
+
+
+
+
