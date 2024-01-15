@@ -234,6 +234,7 @@
           <i class='bx bi bi-lightbulb-fill'></i>
           <span class="text led-status">
             <h3>Led</h3>
+           
             <p id="ledStatus"></p>
           </span>
         </li>
@@ -266,8 +267,8 @@
         fetch(`http://${api}/led/getStatus`)
           .then(response => response.text())
           .then(data => {
-            document.getElementById('ledStatus').innerText = data;
-            console.log(`LED Status: ${data}`);
+            document.getElementById('ledStatus').innerText = 'Led is ' + data ;
+            console.log(`LED Status: Led is ${data}`);
           });
 
         // Function to fetch Fan Status

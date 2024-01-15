@@ -223,8 +223,8 @@
 				document.getElementById("fanForm").addEventListener('submit', function (event) {
 					event.preventDefault();
 
-					var startDelay = document.getElementById("fanStartDelay").value;
-					var duration = document.getElementById("fanDuration").value;
+					var startDelay = document.getElementById("fanStartDelay").value/10;
+					var duration = document.getElementById("fanDuration").value/10;
 
 					var url = `http://${api}/fan/setSchedule?startDelay=${startDelay}&duration=${duration}`;
 
@@ -244,8 +244,8 @@
 				document.getElementById("pumpForm").addEventListener('submit', function (event) {
 					event.preventDefault();
 
-					var startDelay = document.getElementById("pumpStartDelay").value;
-					var duration = document.getElementById("pumpDuration").value;
+					var startDelay = document.getElementById("pumpStartDelay").value/10;
+					var duration = document.getElementById("pumpDuration").value/10;
 
 					var url = `http://${api}/pump/setSchedule?startDelay=${startDelay}&duration=${duration}`;
 
@@ -264,8 +264,8 @@
 				document.getElementById("ledForm").addEventListener('submit', function (event) {
 					event.preventDefault();
 
-					var startDelay = document.getElementById("ledStartDelay").value;
-					var duration = document.getElementById("ledDuration").value;
+					var startDelay = document.getElementById("ledStartDelay").value /10 ;
+					var duration = document.getElementById("ledDuration").value/10;
 
 					var url = `http://${api}/led/setSchedule?startDelay=${startDelay}&duration=${duration}`;
 
