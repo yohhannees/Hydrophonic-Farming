@@ -180,9 +180,7 @@
 						
 					</div>
 			
-					<div class="text-center">
-						<a href="#!" class="dark-link">Load more activity</a>
-					</div>
+					
 			
 				</div>
 			</section>
@@ -211,25 +209,34 @@
 		*/
 		var message = xold.split("/");
 			var notify = document.getElementById("notify");
-			var time =Math.floor(Math.random()*10)+1;
+			
 			message = message.slice(0, 14)
 			var oldelement=" ";
 		
 		message
 		.forEach(element => {
+			var time = Math.floor(Math.random() * 10) + 1;
 		if(oldelement!=element){
 			notify.innerHTML += `
-			<div class="notification-list_content">
-								<div class="notification-list_img">
-									<img src="img/leaf.png" alt="icon">
-								</div>
-								<div class="notification-list_detail">
-									<p><b>System Alert</b> Now</p>
-									<p class="text-muted">${element}</p>
-									<p class="text-muted"><small>${time} mins ago
-										</small></p>
-								</div>
-							</div>	
+			
+                <div class="notification-list notification-list--unread">
+                    <div class="notification-list_content">
+                        <div class="notification-list_img">
+									<img src="./img/farmm.png" alt="icon">
+							</div>
+                        <div class="notification-list_detail">
+                            <p><b>System Alert</b> Now</p>
+                        <p class="text-muted">${element}</p>
+                        <p class="text-muted"><small>${time} mins ago
+                            </small></p>
+                    </div>
+                    <div class="notification-list_feature-img">
+                        <img src="./img/leaf.png" alt="Feature image">
+                    </div>
+                </div>
+
+            
+
 				`;
 				oldelement=element;		
 			}		
